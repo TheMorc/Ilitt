@@ -14,7 +14,7 @@ namespace Morbot
     {
         public static DiscordClient discord;
         public static configJSON configuration = new configJSON();
-        public static string version = "1.1";
+        public static string version = "1.1.1";
         public class configJSON
         {
             public string DiscordBotToken { get; set; }
@@ -66,13 +66,13 @@ namespace Morbot
                         byte[] data = await response.Content.ReadAsByteArrayAsync();
                         client.Credentials = new NetworkCredential(configuration.Username, configuration.Password);
                         string generatedname = null;
-                        if (attachment.Url.Remove(0, 77) == "unknown.png")
+                        if (attachment.FileName == "unknown.png")
                         {
                             generatedname = letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + letters_nums[rand.Next(letters_nums.Length)] + ".png";
                         }
                         else
                         {
-                            generatedname = attachment.Url.Remove(0, 77);
+                            generatedname = attachment.FileName;
                         }
 
                         client.UploadData($"{configuration.Address}{generatedname}", "PUT", data);
