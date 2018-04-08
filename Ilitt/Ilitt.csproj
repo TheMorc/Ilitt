@@ -9,4 +9,8 @@
     <PackageReference Include="DSharpPlus" Version="4.0.0-beta-00394" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <RuntimeFrameworkVersion>2.0.4</RuntimeFrameworkVersion>
+  </PropertyGroup>
+
 </Project>
