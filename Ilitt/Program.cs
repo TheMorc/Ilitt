@@ -16,7 +16,7 @@ namespace Morbot
     {
         public static DiscordClient discord;
         public static ConfigJSON configuration = new ConfigJSON();
-        public static string version = "1.1.3";
+        public static string version = "1.1.4";
         public static int File_Count = 0;
         public static NetworkCredential namepass = null;
         public static List<string> listo = new List<string>();
@@ -159,6 +159,7 @@ namespace Morbot
                         await e.Message.CreateReactionAsync(DiscordEmoji.FromName(e.Client, ":ilitt:"));
                         Random rand = new Random();
                         string[] letters_nums = { "A", "a", "B", "b", "C", "d", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "R", "r", "S", "s", "T", "t", "Q", "q", "U", "U", "V", "v", "X", "x", "Y", "y", "Z", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+                        await e.Message.CreateReactionAsync(DiscordEmoji.FromName(discord, ":hmsttripledots:"));
                         HttpClient cl = new HttpClient();
                         HttpResponseMessage response = await cl.GetAsync(attachment.Url);
                         string generatedname = attachment.FileName;
@@ -177,9 +178,9 @@ namespace Morbot
                             //client.UploadData($"{configuration.Address}{generatedname}", "PUT", data);
                             client.UploadData($"{configuration.Address}{generatedname}", method, data);
                             await e.Message.CreateReactionAsync(DiscordEmoji.FromName(discord, configuration.RespondEmoji));
-                            await owner.SendMessageAsync($"Uploaded file: `{generatedname}`");
+                            await owner.SendMessageAsync($"File: `{generatedname}` sent by {e.Message.Author.Mention} in `{e.Guild.Name}` was uploaded sucessfully!");
                         }
-
+                        await e.Message.DeleteReactionAsync(DiscordEmoji.FromName(discord, ":hmsttripledots:"), discord.CurrentUser, "nah.");
                     }
 
                 }
